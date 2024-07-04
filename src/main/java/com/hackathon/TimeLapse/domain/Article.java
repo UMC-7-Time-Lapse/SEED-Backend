@@ -23,9 +23,13 @@ public class Article extends BaseEntity {
 
     @Column(
             nullable = false,
-            length = 200
+            length = 40
     )
-    private String location;
+    private String title;
+
+    private Double latitude;
+
+    private Double longitude;
 
     @Column(
             nullable = false,
