@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/files")
 @RequiredArgsConstructor
@@ -18,6 +20,11 @@ public class S3Controller {
 	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
 		return s3Service.uploadFile(file);
+	}
+
+	@PostMapping(value = "/uploadMultiple", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<List<String>> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+		return s3Service.uploadMultipleFiles(files);
 	}
 
 	@GetMapping("/url")

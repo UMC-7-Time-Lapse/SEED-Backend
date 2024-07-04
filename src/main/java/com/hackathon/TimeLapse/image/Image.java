@@ -1,9 +1,9 @@
-package com.hackathon.TimeLapse.domain;
+package com.hackathon.TimeLapse.image;
 
-import com.hackathon.TimeLapse.domain.common.BaseEntity;
+import com.hackathon.TimeLapse.article.Article;
+import com.hackathon.TimeLapse.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Getter
@@ -16,7 +16,7 @@ public class Image extends BaseEntity {
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private long id;
+    private Long id;
 
     @Column(
             nullable = false,

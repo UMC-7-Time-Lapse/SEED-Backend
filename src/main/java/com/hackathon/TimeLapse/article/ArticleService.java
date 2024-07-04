@@ -1,13 +1,8 @@
 package com.hackathon.TimeLapse.article;
 import com.hackathon.TimeLapse.apiPayload.exception.MemberNotFoundException;
-import com.hackathon.TimeLapse.domain.Image;
 import com.hackathon.TimeLapse.member.MemberRepository;
-import com.hackathon.TimeLapse.domain.Article;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ArticleService {

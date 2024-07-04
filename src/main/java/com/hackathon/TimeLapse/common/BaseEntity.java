@@ -1,4 +1,4 @@
-package com.hackathon.TimeLapse.domain.common;
+package com.hackathon.TimeLapse.common;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

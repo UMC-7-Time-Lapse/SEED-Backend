@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -42,6 +44,25 @@ public class S3Service {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+
+	public ResponseEntity<List<String>> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+		List<String> fileUrls = new ArrayList<>();
+		for (MultipartFile file : files) {
+			try {
+				String fileName = file.getOriginalFilename();
+				String fileUrl = "https://" + bucket + "/test" + fileName;
+				ObjectMetadata metadata = new ObjectMetadata();
+				metadata.setContentType(file.getContentType());
+				metadata.setContentLength(file.getSize());
+				amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
+				fileUrls.add(fileUrl);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+		}
+		return ResponseEntity.ok(fileUrls);
 	}
 
 	public void deleteFile(String fileName) {
