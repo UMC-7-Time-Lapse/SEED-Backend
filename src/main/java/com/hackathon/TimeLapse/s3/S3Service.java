@@ -46,23 +46,18 @@ public class S3Service {
 		}
 	}
 
-	public ResponseEntity<List<String>> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+	public List<String> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) throws IOException {
 		List<String> fileUrls = new ArrayList<>();
 		for (MultipartFile file : files) {
-			try {
-				String fileName = file.getOriginalFilename();
-				String fileUrl = "https://" + bucket + "/test" + fileName;
-				ObjectMetadata metadata = new ObjectMetadata();
-				metadata.setContentType(file.getContentType());
-				metadata.setContentLength(file.getSize());
-				amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
-				fileUrls.add(fileUrl);
-			} catch (IOException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			}
+			String fileName = file.getOriginalFilename();
+			String fileUrl = "https://" + bucket + "/test" + fileName;
+			ObjectMetadata metadata = new ObjectMetadata();
+			metadata.setContentType(file.getContentType());
+			metadata.setContentLength(file.getSize());
+			amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
+			fileUrls.add(fileUrl);
 		}
-		return ResponseEntity.ok(fileUrls);
+		return fileUrls;
 	}
 
 	public void deleteFile(String fileName) {
