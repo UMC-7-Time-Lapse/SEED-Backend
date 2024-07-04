@@ -55,7 +55,7 @@ public class S3Service {
 			metadata.setContentType(file.getContentType());
 			metadata.setContentLength(file.getSize());
 			amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
-			fileUrls.add(fileUrl);
+			fileUrls.add(getFileUrl(fileName));
 		}
 		return fileUrls;
 	}
