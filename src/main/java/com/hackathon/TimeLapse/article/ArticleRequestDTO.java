@@ -13,6 +13,8 @@ public class ArticleRequestDTO {
     @Getter
     public static class createArticleDTO {
         @NotNull
+        private Long memberId;
+        @NotNull
         private Double latitude;
         @NotNull
         private Double longitude;
