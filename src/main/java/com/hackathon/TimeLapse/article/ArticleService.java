@@ -1,4 +1,5 @@
 package com.hackathon.TimeLapse.article;
+import com.hackathon.TimeLapse.apiPayload.exception.MemberNotFoundException;
 import com.hackathon.TimeLapse.domain.Image;
 import com.hackathon.TimeLapse.member.MemberRepository;
 import com.hackathon.TimeLapse.domain.Article;
@@ -22,7 +23,8 @@ public class ArticleService {
     public Article createArticle(Long memberId, ArticleRequestDTO.createArticleDTO request) {
         Article article = ArticleConverter.toArticle(request);
 
-        article.setMember(memberRepository.findById(memberId).get());
+        article.setMember(memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberNotFoundException("Member not found with id: " + memberId)));
         List<Image> images = new ArrayList<>();
         for (String imageUrl : request.getImageList()) {
             Image image = Image.builder()
