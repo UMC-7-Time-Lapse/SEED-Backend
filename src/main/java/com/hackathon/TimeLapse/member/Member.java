@@ -5,12 +5,9 @@ import java.util.List;
 
 import com.hackathon.TimeLapse.article.Article;
 import com.hackathon.TimeLapse.common.BaseEntity;
-import com.hackathon.TimeLapse.oauth.OAuthProvider;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,9 +33,6 @@ public class Member extends BaseEntity {
 
     private String nickname;
 
-    @Enumerated(EnumType.STRING)
-    private OAuthProvider oAuthProvider;
-
     @OneToMany(
             mappedBy = "member",
             cascade = {CascadeType.ALL},
@@ -47,9 +41,8 @@ public class Member extends BaseEntity {
     private List<Article> articleList = new ArrayList<>();
 
     @Builder
-    public Member(String email, String nickname, OAuthProvider oAuthProvider) {
+    public Member(String email, String nickname) {
         this.email = email;
         this.nickname = nickname;
-        this.oAuthProvider = oAuthProvider;
     }
 }
