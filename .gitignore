@@ -1,4 +1,4 @@
-application-prod.yml
+application-local.yml
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,intellij+all,gradle,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,intellij+all,gradle,macos
