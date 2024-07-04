@@ -1,11 +1,9 @@
 package com.hackathon.TimeLapse.article;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ArticleResponseDTO {
     @Builder
@@ -15,6 +13,47 @@ public class ArticleResponseDTO {
     public static class createArticleResultDTO{
         Long articleId;
         LocalDateTime createdAt;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ArticleSummaryDTO {
+        private Long id;
+        private String imageUrl;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ArticleDetailDTO {
+        private Long id;
+        private String title;
+        private String description;
+        private Double latitude;
+        private Double longitude;
+        private Long status;
+        private List<String> imageUrls;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ArticleListDTO {
+        private List<ArticleSummaryDTO> articles;
+        private LatestArticleDTO latestArticle;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LatestArticleDTO {
+        private Double latitude;
+        private Double longitude;
     }
 
 }
