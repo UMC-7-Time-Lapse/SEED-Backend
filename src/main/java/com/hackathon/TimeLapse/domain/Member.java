@@ -1,33 +1,54 @@
 package com.hackathon.TimeLapse.domain;
 
-import com.hackathon.TimeLapse.domain.common.BaseEntity;
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Getter
-@DynamicUpdate
-@DynamicInsert
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+import com.hackathon.TimeLapse.domain.common.BaseEntity;
+import com.hackathon.TimeLapse.oauth.OAuthProvider;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Entity
 public class Member extends BaseEntity {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
     private Long id;
 
+    private String email;
+
+    private String nickname;
+
+    @Enumerated(EnumType.STRING)
+    private OAuthProvider oAuthProvider;
+
     @OneToMany(
-            mappedBy = "member",
-            cascade = {CascadeType.ALL}
+        mappedBy = "member",
+        cascade = {CascadeType.ALL},
+        fetch = FetchType.EAGER
     )
-    @Builder.Default
     private List<Article> articleList = new ArrayList<>();
+
+    @Builder
+    public Member(String email, String nickname, OAuthProvider oAuthProvider) {
+        this.email = email;
+        this.nickname = nickname;
+        this.oAuthProvider = oAuthProvider;
+    }
 }
