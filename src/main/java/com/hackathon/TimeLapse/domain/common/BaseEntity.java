@@ -1,13 +1,5 @@
 package com.hackathon.TimeLapse.domain.common;
 
-<<<<<<< HEAD
-=======
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
->>>>>>> 70ee3d5c346dffc7d17898348f51db919083e502
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
