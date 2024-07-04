@@ -2,11 +2,18 @@ package com.hackathon.TimeLapse.domain;
 
 import com.hackathon.TimeLapse.domain.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Builder
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Article extends BaseEntity {
     @Id
     @GeneratedValue(
@@ -38,5 +45,6 @@ public class Article extends BaseEntity {
             mappedBy = "article",
             cascade = {CascadeType.ALL}
     )
+    @Builder.Default
     private List<Image> imageList = new ArrayList<>();
 }

@@ -2,8 +2,15 @@ package com.hackathon.TimeLapse.domain;
 
 import com.hackathon.TimeLapse.domain.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@Getter
+@Builder
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Image extends BaseEntity {
     @Id
     @GeneratedValue(
