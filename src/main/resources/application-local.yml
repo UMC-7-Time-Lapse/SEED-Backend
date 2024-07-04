@@ -13,3 +13,13 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+
+cloud:
+  aws:
+    s3:
+      bucket: NONE
+    stack.auto: false
+    region.static: NONE
+    credentials:
+      accessKey: NONE
+      secretKey: NONE
