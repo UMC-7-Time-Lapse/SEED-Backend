@@ -23,6 +23,5 @@ public class ArticleRequestDTO {
         private Long status;
         @NotNull
         private Long memberId;
-        private List<String> imageList;
     }
 }

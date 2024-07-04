@@ -25,17 +25,6 @@ public class ArticleService {
 
         article.setMember(memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberNotFoundException("Member not found with id: " + memberId)));
-        List<Image> images = new ArrayList<>();
-        for (String imageUrl : request.getImageList()) {
-            Image image = Image.builder()
-                    .image_url(imageUrl)
-                    .article(article)
-                    .build();
-            images.add(image);
-        }
-        article.setImageList(images);
-
-
 
         return articleRepository.save(article);
     }
