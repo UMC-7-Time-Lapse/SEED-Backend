@@ -1,9 +1,10 @@
-package com.hackathon.TimeLapse.domain;
+package com.hackathon.TimeLapse.article;
 
-import com.hackathon.TimeLapse.domain.common.BaseEntity;
+import com.hackathon.TimeLapse.common.BaseEntity;
+import com.hackathon.TimeLapse.image.Image;
+import com.hackathon.TimeLapse.member.Member;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.ArrayList;
 import java.util.List;

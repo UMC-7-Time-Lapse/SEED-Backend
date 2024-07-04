@@ -1,9 +1,10 @@
-package com.hackathon.TimeLapse.domain;
+package com.hackathon.TimeLapse.member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hackathon.TimeLapse.domain.common.BaseEntity;
+import com.hackathon.TimeLapse.article.Article;
+import com.hackathon.TimeLapse.common.BaseEntity;
 import com.hackathon.TimeLapse.oauth.OAuthProvider;
 
 import jakarta.persistence.CascadeType;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class Member extends BaseEntity {
     @Id
     @GeneratedValue(
-        strategy = GenerationType.IDENTITY
+            strategy = GenerationType.IDENTITY
     )
     private Long id;
 
@@ -39,9 +40,9 @@ public class Member extends BaseEntity {
     private OAuthProvider oAuthProvider;
 
     @OneToMany(
-        mappedBy = "member",
-        cascade = {CascadeType.ALL},
-        fetch = FetchType.EAGER
+            mappedBy = "member",
+            cascade = {CascadeType.ALL},
+            fetch = FetchType.EAGER
     )
     private List<Article> articleList = new ArrayList<>();
 

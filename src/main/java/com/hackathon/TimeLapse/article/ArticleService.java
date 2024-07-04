@@ -1,13 +1,11 @@
 package com.hackathon.TimeLapse.article;
+import java.util.List;
+
 import com.hackathon.TimeLapse.apiPayload.exception.MemberNotFoundException;
-import com.hackathon.TimeLapse.domain.Image;
+import com.hackathon.TimeLapse.image.ImageService;
 import com.hackathon.TimeLapse.member.MemberRepository;
-import com.hackathon.TimeLapse.domain.Article;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ArticleService {
@@ -20,7 +18,8 @@ public class ArticleService {
     }
 
     @Transactional
-    public Article createArticle(Long memberId, ArticleRequestDTO.createArticleDTO request) {
+    public Article createArticle(Long memberId, ArticleRequestDTO.createArticleDTO request,
+        List<String> uploadedFilesLinks) {
         Article article = ArticleConverter.toArticle(request);
 
         article.setMember(memberRepository.findById(memberId)

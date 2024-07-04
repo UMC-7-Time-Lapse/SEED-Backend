@@ -2,7 +2,7 @@ package com.hackathon.TimeLapse.oauth;
 
 import org.springframework.stereotype.Service;
 
-import com.hackathon.TimeLapse.domain.Member;
+import com.hackathon.TimeLapse.member.Member;
 import com.hackathon.TimeLapse.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;

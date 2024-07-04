@@ -1,7 +1,5 @@
 package com.hackathon.TimeLapse.article;
 
-import com.hackathon.TimeLapse.domain.Article;
-
 import java.time.LocalDateTime;
 
 public class ArticleConverter {
