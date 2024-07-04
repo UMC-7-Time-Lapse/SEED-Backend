@@ -49,6 +49,25 @@ public class ArticleService {
     }
 
     @Transactional
+    public ArticleResponseDTO.SimpleArticleListDTO getMemberArticles(Long memberId) {
+        List<Article> articles = articleRepository.findByMemberId(memberId);
+        articles.forEach(article -> {
+            article.getImageList().size(); // Initialize lazy-loaded collections
+        });
+
+        List<SimpleArticleDTO> simpleArticleDTOs = articles.stream()
+            .map(article -> new SimpleArticleDTO(
+                article.getLatitude(),
+                article.getLongitude(),
+                article.getMember().getId(),
+                article.getTitle(),
+                article.getDescription()))
+            .collect(Collectors.toList());
+
+        return new ArticleResponseDTO.SimpleArticleListDTO(simpleArticleDTOs);
+    }
+
+    @Transactional
     public ArticleResponseDTO.ArticleDetailDTO getArticleDetail(Long articleId) {
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new ArticleNotFoundException("Article not found with id: " + articleId));

@@ -58,6 +58,12 @@ public class ArticleController {
         return ApiResponse.onSuccess(articles);
     }
 
+    @GetMapping("/member/{memberId}")
+    public ApiResponse<ArticleResponseDTO.SimpleArticleListDTO> getMemberArticles(@PathVariable(name = "memberId") Long memberId) {
+        ArticleResponseDTO.SimpleArticleListDTO memberArticles = articleService.getMemberArticles(memberId);
+        return ApiResponse.onSuccess(memberArticles);
+    }
+
     @GetMapping("/{articleId}")
     public ApiResponse<ArticleResponseDTO.ArticleDetailDTO> getArticleDetail(@PathVariable Long articleId) {
         ArticleResponseDTO.ArticleDetailDTO article = articleService.getArticleDetail(articleId);

@@ -6,6 +6,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ArticleResponseDTO {
+
+    @Getter
+    @AllArgsConstructor
+    public static class SimpleArticleListDTO {
+        private List<SimpleArticleDTO> articles;
+    }
+
     @Builder
     @Getter
     @NoArgsConstructor
