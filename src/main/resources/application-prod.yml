@@ -18,8 +18,8 @@ cloud:
   aws:
     s3:
       bucket: {bucketname}
-    stack.auto: false
-    region.static: {region}
-    credentials:
-      accessKey: {accesskey}
-      secretKey: {secretkey}
+      stack.auto: false
+      region.static: {region}
+      credentials:
+        accessKey: {accesskey}
+        secretKey: {secretkey}
